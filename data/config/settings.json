@@ -1,0 +1,6 @@
+{
+  "auto_register_mods": true,
+  "stream_screenshots": true,
+  "screenshot_interval_seconds": 6,
+  "autonomous_enabled": true
+}

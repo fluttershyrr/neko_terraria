@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "Gatita Terraria · Inicio rápido",
+  "connect": "Conectar juego",
+  "status": "Estado de gatita",
+  "disconnect": "Desconectar",
+  "connected": "Conectado",
+  "not_connected": "No conectado",
+  "guide_title": "Guía",
+  "guide_body": "Di a la gatita por voz o chat: mina hierro, dámelo, ponte la armadura. Ella también explora y pelea sola.",
+  "hp": "HP",
+  "mp": "MP",
+  "goal": "Objetivo actual"
+}

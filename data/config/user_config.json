@@ -1,0 +1,8 @@
+{
+  "server_host": "127.0.0.1",
+  "server_port": 7777,
+  "mod_host": "127.0.0.1",
+  "mod_port": 9877,
+  "bot_name": "Neko",
+  "bot_password": ""
+}

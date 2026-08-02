@@ -1,0 +1,20 @@
+{
+  "quickstart_title": "泰拉瑞亚猫娘 · 快速开始",
+  "connect": "连接游戏",
+  "status": "猫娘状态",
+  "disconnect": "断开",
+  "connected": "已连接",
+  "not_connected": "未连接",
+  "guide_title": "使用指南",
+  "guide_body": "用语音或聊天告诉猫娘：去挖铁矿、挖完给我、穿上装备。猫娘也会自己探索战斗。",
+  "hp": "生命",
+  "mp": "魔力",
+  "goal": "当前目标",
+  "inventory": "查看背包",
+  "hotbar": "手持栏",
+  "equipped": "装备栏",
+  "backpack": "背包",
+  "chests": "箱子",
+  "log": "行为日志",
+  "status": "猫娘状态"
+}

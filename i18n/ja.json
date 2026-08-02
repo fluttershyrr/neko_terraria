@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "テラリア猫娘 · クイックスタート",
+  "connect": "ゲーム接続",
+  "status": "猫娘ステータス",
+  "disconnect": "切断",
+  "connected": "接続済み",
+  "not_connected": "未接続",
+  "guide_title": "ガイド",
+  "guide_body": "音声やチャットで猫娘に指示：鉄を掘る、私に渡す、防具を着る。自分でも探索や戦闘をする。",
+  "hp": "HP",
+  "mp": "MP",
+  "goal": "現在の目標"
+}

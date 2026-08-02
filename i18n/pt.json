@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "Gatinha Terraria · Início rápido",
+  "connect": "Conectar jogo",
+  "status": "Status da gatinha",
+  "disconnect": "Desconectar",
+  "connected": "Conectado",
+  "not_connected": "Não conectado",
+  "guide_title": "Guia",
+  "guide_body": "Diga à gatinha por voz ou chat: minerar ferro, me dê, vestir armadura. Ela também explora e luta sozinha.",
+  "hp": "HP",
+  "mp": "MP",
+  "goal": "Objetivo atual"
+}

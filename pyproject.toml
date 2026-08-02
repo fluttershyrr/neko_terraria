@@ -1,0 +1,8 @@
+[project]
+name = "neko_terraria"
+version = "0.1.0"
+description = "AI cat-girl as autonomous Terraria player plugin for N.E.K.O."
+requires-python = ">=3.13.5"
+
+[project.optional-dependencies]
+vision = ["pillow>=10.0"]

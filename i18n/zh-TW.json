@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "泰拉瑞亞貓娘 · 快速開始",
+  "connect": "連接遊戲",
+  "status": "貓娘狀態",
+  "disconnect": "斷開",
+  "connected": "已連接",
+  "not_connected": "未連接",
+  "guide_title": "使用指南",
+  "guide_body": "用語音或聊天告訴貓娘：去挖鐵礦、挖完給我、穿上裝備。貓娘也會自己探索戰鬥。",
+  "hp": "生命",
+  "mp": "魔力",
+  "goal": "當前目標"
+}

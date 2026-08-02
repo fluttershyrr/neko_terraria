@@ -1,0 +1,4 @@
+E:\pythonxx\tkry\N.E.K.O_v0.8.3.2_win\resources\bin\plugin\plugins\neko_terraria\mod\NekoTerrariaLink\obj\Debug\net8.0\NekoTerrariaLink.GeneratedMSBuildEditorConfig.editorconfig
+E:\pythonxx\tkry\N.E.K.O_v0.8.3.2_win\resources\bin\plugin\plugins\neko_terraria\mod\NekoTerrariaLink\obj\Debug\net8.0\NekoTerrariaLink.AssemblyInfoInputs.cache
+E:\pythonxx\tkry\N.E.K.O_v0.8.3.2_win\resources\bin\plugin\plugins\neko_terraria\mod\NekoTerrariaLink\obj\Debug\net8.0\NekoTerrariaLink.AssemblyInfo.cs
+E:\pythonxx\tkry\N.E.K.O_v0.8.3.2_win\resources\bin\plugin\plugins\neko_terraria\mod\NekoTerrariaLink\obj\Debug\net8.0\NekoTerrariaLink.csproj.CoreCompileInputs.cache

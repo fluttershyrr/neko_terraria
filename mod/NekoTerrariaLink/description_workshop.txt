@@ -1,0 +1,4 @@
+NekoTerrariaLink — 泰拉瑞亚猫娘的本地接口 mod。
+
+让 AI 猫娘作为独立玩家加入你的泰拉瑞亚世界：自主挖矿、合成、探索、战斗。
+本 mod 在本地 9877 端口开放 TCP 控制接口，由 N.E.K.O 平台的 neko_terraria 插件驱动。

@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "Terraria Cat-Girl · Quick Start",
+  "connect": "Connect Game",
+  "status": "Cat Status",
+  "disconnect": "Disconnect",
+  "connected": "Connected",
+  "not_connected": "Not connected",
+  "guide_title": "Guide",
+  "guide_body": "Tell the cat-girl by voice or chat: mine iron, give it to me, equip armor. She also explores and fights on her own.",
+  "hp": "HP",
+  "mp": "MP",
+  "goal": "Current Goal"
+}

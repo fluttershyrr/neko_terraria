@@ -1,0 +1,15 @@
+Configs: {
+	NekoConfig: {
+		LocalOnly: {
+			Tooltip: 开启时只接受 127.0.0.1 的连接，更安全；关闭可允许局域网连接。
+			Label: 仅允许本机连接
+		}
+
+		ModPort: {
+			Tooltip: 本模组开放的控制接口端口。需与 neko_terraria 插件 plugin.toml 的 mod_port 一致。
+			Label: 监听端口 (mod_port)
+		}
+
+		DisplayName: Neko Config
+	}
+}

@@ -1,0 +1,46 @@
+[plugin]
+id = "neko_terraria"
+name = "泰拉瑞亚猫娘"
+description = "让 AI 猫娘作为独立玩家加入泰拉瑞亚世界：双轨任务调度、自主行为、复杂多步任务规划与执行、mod 物品合成推演。"
+short_description = "Terraria autonomous cat-girl teammate with planning and mod crafting."
+keywords = ["terraria", "game", "autonomous", "cat", "ai-teammate", "mod"]
+version = "0.1.0"
+entry = "plugins.neko_terraria:NTerrariaPlugin"
+
+[plugin.author]
+name = "N.E.K.O Team"
+
+[plugin.sdk]
+recommended = ">=0.1.0,<0.2.0"
+supported = ">=0.1.0,<0.3.0"
+
+[plugin.i18n]
+default_locale = "zh-CN"
+locales_dir = "i18n"
+
+[plugin_runtime]
+enabled = true
+auto_start = false
+
+[plugin.store]
+enabled = true
+
+
+# 本插件通过 Terraria-Bot 协议 + tModLoader mod 接口通信，
+# 不使用截图推 LLM 链路；前端 UI 由 [plugin.ui] 下的 guide 提供。
+
+[plugin.ui]
+enabled = true
+
+[[plugin.ui.panel]]
+id = "main"
+title = "NEKO猫娘AI - 泰拉瑞亚控制面板"
+entry = "static/index.html"
+context = "dashboard"
+permissions = ["state:read", "action:call"]
+
+[[plugin.ui.guide]]
+id = "guide"
+title = "使用指南"
+entry = "docs/guide.md"
+permissions = ["state:read"]

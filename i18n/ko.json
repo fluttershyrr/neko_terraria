@@ -1,0 +1,13 @@
+{
+  "quickstart_title": "테라리아 캣걸 · 빠른 시작",
+  "connect": "게임 연결",
+  "status": "캣걸 상태",
+  "disconnect": "연결 해제",
+  "connected": "연결됨",
+  "not_connected": "연결 안 됨",
+  "guide_title": "가이드",
+  "guide_body": "음성이나 채팅으로 캣걸에게: 철광 캐기, 나에게 주기, 갑옷 입기. 스스로 탐험하고 싸우기도 함.",
+  "hp": "HP",
+  "mp": "MP",
+  "goal": "현재 목표"
+}

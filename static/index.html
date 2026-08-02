@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>泰拉瑞亚猫娘</title>
+  <style>
+    :root {
+      --bg-deep: #0B0E14;
+      --bg-panel: #0F172A;
+      --bg-hover: #1E293B;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #64748B;
+      --accent-sky: #38BDF8;
+      --accent-orange: #F97316;
+      --border: #1E293B;
+      --success: #22C55E;
+      --danger: #EF4444;
+      --warning: #F59E0B;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+    .header-left { display: flex; align-items: center; gap: 16px; }
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-sky), var(--accent-orange));
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .title { font-size: 20px; font-weight: 700; }
+    .subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-badge.connected { background: rgba(34,197,94,0.15); color: var(--success); }
+    .status-badge.disconnected { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: var(--bg-hover); color: var(--text-secondary); }
+    .tab-btn.active { background: var(--accent-sky); color: var(--bg-deep); }
+
+    /* Panel */
+    .panel {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+    .panel.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Stats */
+    .stat-card {
+      background: var(--bg-hover);
+      padding: 16px;
+      border-radius: var(--radius);
+      border-left: 3px solid var(--accent-sky);
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .stat-value { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .stat-bar {
+      height: 6px;
+      background: rgba(56,189,248,0.2);
+      border-radius: 3px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .stat-bar-fill {
+      height: 100%;
+      background: var(--accent-sky);
+      transition: width 0.3s;
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-sky);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
+    }
+    .form-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: var(--accent-orange);
+      color: white;
+    }
+    .btn-primary:hover { background: #EA580C; transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { background: #334155; }
+    .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { background: #16A34A; }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-danger:hover { background: #DC2626; }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-group { display: flex; gap: 12px; margin-top: 24px; }
+
+    /* Item List */
+    .item-list { max-height: 400px; overflow-y: auto; }
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-hover);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .item-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-panel);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .item-info { flex: 1; }
+    .item-name { font-size: 14px; font-weight: 600; }
+    .item-stack {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Log */
+    .log-list { max-height: 300px; overflow-y: auto; }
+    .log-item {
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      border-left: 2px solid var(--border);
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 16px 20px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      z-index: 1000;
+      animation: slideIn 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 300px;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .toast.success { border-left: 3px solid var(--success); }
+    .toast.error { border-left: 3px solid var(--danger); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-panel); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="logo">🐱</div>
+        <div>
+          <div class="title">泰拉瑞亚猫娘</div>
+          <div class="subtitle">Terraria N.E.K.O AI Agent</div>
+        </div>
+      </div>
+      <div id="connectionStatus">
+        <span class="status-badge disconnected">
+          <span class="status-dot"></span>
+          未连接
+        </span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('dashboard')">面板</button>
+      <button class="tab-btn" onclick="switchTab('config')">连接设置</button>
+      <button class="tab-btn" onclick="switchTab('inventory')">背包</button>
+      <button class="tab-btn" onclick="switchTab('log')">日志</button>
+    </div>
+
+    <!-- Dashboard Panel -->
+    <div id="panel-dashboard" class="panel active">
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">玩家状态</div>
+          <div class="stat-card" style="border-left-color: #EF4444">
+            <div class="stat-label">生命值</div>
+            <div class="stat-value" id="hp">0 / 100</div>
+            <div class="stat-bar"><div class="stat-bar-fill" id="hpBar" style="width: 0%; background: #EF4444"></div></div>
+          </div>
+          <div class="stat-card" style="border-left-color: var(--accent-sky); margin-top: 16px;">
+            <div class="stat-label">魔力值</div>
+            <div class="stat-value" id="mp">0 / 20</div>
+            <div class="stat-bar"><div class="stat-bar-fill" id="mpBar" style="width: 0%"></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">位置信息</div>
+          <div class="stat-card">
+            <div class="stat-label">坐标</div>
+            <div class="stat-value" style="font-size: 18px" id="position">X: 0, Y: 0</div>
+          </div>
+          <div class="stat-card" style="margin-top: 16px;">
+            <div class="stat-label">世界时间</div>
+            <div class="stat-value" style="font-size: 18px" id="worldTime">未知</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">当前目标</div>
+        <div style="padding: 16px; background: var(--bg-hover); border-radius: 6px; font-size: 14px; color: var(--text-secondary);" id="currentGoal">
+          无
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-success" onclick="connect()">🔗 连接游戏</button>
+        <button class="btn btn-danger" onclick="disconnect()">✂️ 断开连接</button>
+        <button class="btn btn-secondary" onclick="refreshState()">🔄 刷新状态</button>
+      </div>
+    </div>
+
+    <!-- Config Panel -->
+    <div id="panel-config" class="panel">
+      <div class="card">
+        <div class="card-title">服务器与 MOD 连接配置</div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">服务器 IP (Terraria-Bot)</label>
+            <input type="text" class="form-input" id="serverHost" value="127.0.0.1">
+            <div class="form-hint">开服电脑的 IP，本地填 127.0.0.1</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">服务器端口</label>
+            <input type="number" class="form-input" id="serverPort" value="7777">
+            <div class="form-hint">默认 7777</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Mod 接口 IP (tModLoader)</label>
+            <input type="text" class="form-input" id="modHost" value="127.0.0.1">
+            <div class="form-hint">一般同服务器 IP</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mod 接口端口</label>
+            <input type="number" class="form-input" id="modPort" value="9877">
+            <div class="form-hint">默认 9877</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">猫娘玩家名</label>
+            <input type="text" class="form-input" id="botName" value="Neko">
+            <div class="form-hint">作为独立玩家加入世界的名字</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">房间密码</label>
+            <input type="password" class="form-input" id="botPassword" placeholder="留空表示无密码">
+            <div class="form-hint">加入服务器时的密码，本地配置请留空</div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="saveConfig()">💾 保存配置</button>
+          <button class="btn btn-secondary" onclick="loadConfig()">🔄 重新加载</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory Panel -->
+    <div id="panel-inventory" class="panel">
+      <div class="card">
+        <div class="card-title">快捷栏</div>
+        <div class="item-list" id="hotbarList">
+          <div style="color: var(--text-muted); text-align: center; padding: 32px;">未连接</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">背包</div>
+        <div class="item-list" id="inventoryList">
+          <div style="color: var(--text-muted); text-align: center; padding: 32px;">未连接</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log Panel -->
+    <div id="panel-log" class="panel">
+      <div class="card">
+        <div class="card-title">行为日志（最近20条）</div>
+        <div class="log-list" id="logList">
+          <div style="color: var(--text-muted); text-align: center; padding: 32px;">未连接</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// ══════════════════════ 状态管理 ══════════════════════
+let state = {
+  connected: false,
+  connection: {},
+  player: {},
+  world: {},
+  inventory: {},
+  chests: [],
+  log: [],
+  current_goal: ""
+};
+
+// ══════════════════════ API 调用 ══════════════════════
+async function callEntry(entryId, params = {}) {
+  try {
+    const res = await fetch(`/plugin/neko_terraria/entry/${entryId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    console.error(`callEntry ${entryId} 失败:`, e);
+    return { ok: false, error: e.message };
+  }
+}
+
+// ══════════════════════ 状态刷新 ══════════════════════
+async function refreshState() {
+  try {
+    const r = await callEntry('get_dashboard_state', {});
+    if (r && typeof r === 'object' && !Array.isArray(r)) {
+      state = r;
+    }
+    render();
+  } catch (e) {
+    console.error('刷新状态失败:', e);
+  }
+}
+
+function render() {
+  // 连接状态
+  const badge = document.getElementById('connectionStatus');
+  if (state.connected) {
+    badge.innerHTML = '<span class="status-badge connected"><span class="status-dot"></span>已连接</span>';
+  } else {
+    badge.innerHTML = '<span class="status-badge disconnected"><span class="status-dot"></span>未连接</span>';
+  }
+
+  // 玩家状态
+  const p = state.player || {};
+  const hp = p.hp || 0;
+  const maxHp = p.max_life || 100;
+  const mp = p.mp || 0;
+  const maxMp = p.max_mp || 20;
+  document.getElementById('hp').textContent = `${hp} / ${maxHp}`;
+  document.getElementById('hpBar').style.width = `${(hp / maxHp) * 100}%`;
+  document.getElementById('mp').textContent = `${mp} / ${maxMp}`;
+  document.getElementById('mpBar').style.width = `${(mp / maxMp) * 100}%`;
+
+  // 位置
+  document.getElementById('position').textContent = `X: ${p.tile_x || 0}, Y: ${p.tile_y || 0}`;
+
+  // 世界时间
+  const w = state.world || {};
+  document.getElementById('worldTime').textContent = w.time || '未知';
+
+  // 当前目标
+  document.getElementById('currentGoal').textContent = state.current_goal || '无';
+
+  // 背包
+  const inv = state.inventory || {};
+  renderItems('hotbarList', inv.hotbar || []);
+  renderItems('inventoryList', inv.inventory || []);
+
+  // 日志
+  renderLog(state.log || []);
+}
+
+function renderItems(elementId, items) {
+  const el = document.getElementById(elementId);
+  if (!state.connected || items.length === 0) {
+    el.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 32px;">无物品</div>';
+    return;
+  }
+  el.innerHTML = items.map(item => `
+    <div class="item">
+      <div class="item-icon">📦</div>
+      <div class="item-info">
+        <div class="item-name">${item.name || '未知'}</div>
+        <div class="item-stack">数量: ${item.stack || 0}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLog(logs) {
+  const el = document.getElementById('logList');
+  if (!state.connected || logs.length === 0) {
+    el.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 32px;">无日志</div>';
+    return;
+  }
+  el.innerHTML = logs.map(log => `<div class="log-item">${log}</div>`).join('');
+}
+
+// ══════════════════════ 操作按钮 ══════════════════════
+async function connect() {
+  showToast('正在连接...', 'info');
+  const r = await callEntry('nt_connect', {});
+  if (r && r.ok && r.connected) {
+    showToast('连接成功！', 'success');
+    await refreshState();
+  } else {
+    showToast(r.msg || '连接失败', 'error');
+  }
+}
+
+async function disconnect() {
+  const r = await callEntry('nt_stop', {});
+  if (r && r.ok) {
+    showToast('已断开连接', 'success');
+    await refreshState();
+  } else {
+    showToast('断开失败', 'error');
+  }
+}
+
+// ══════════════════════ 配置管理 ══════════════════════
+async function loadConfig() {
+  const c = state.connection || {};
+  document.getElementById('serverHost').value = c.server_host || '127.0.0.1';
+  document.getElementById('serverPort').value = c.server_port || 7777;
+  document.getElementById('modHost').value = c.mod_host || '127.0.0.1';
+  document.getElementById('modPort').value = c.mod_port || 9877;
+  document.getElementById('botName').value = c.bot_name || 'Neko';
+  document.getElementById('botPassword').value = c.bot_password || '';
+}
+
+async function saveConfig() {
+  const params = {
+    server_host: document.getElementById('serverHost').value,
+    server_port: parseInt(document.getElementById('serverPort').value),
+    mod_host: document.getElementById('modHost').value,
+    mod_port: parseInt(document.getElementById('modPort').value),
+    bot_name: document.getElementById('botName').value,
+    bot_password: document.getElementById('botPassword').value,
+  };
+  const r = await callEntry('nt_save_config', params);
+  if (r && r.ok) {
+    showToast('配置已保存！', 'success');
+    await refreshState();
+  } else {
+    showToast('保存失败', 'error');
+  }
+}
+
+// ══════════════════════ UI 工具 ══════════════════════
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+  if (name === 'config') loadConfig();
+}
+
+function showToast(msg, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// ══════════════════════ 初始化 ══════════════════════
+refreshState();
+setInterval(refreshState, 2000);
+</script>
+</body>
+</html>

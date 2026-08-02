@@ -1,0 +1,3 @@
+displayName = NEKO猫娘AI
+author = N.E.K.O 猫羽雫
+version = 0.1.2
